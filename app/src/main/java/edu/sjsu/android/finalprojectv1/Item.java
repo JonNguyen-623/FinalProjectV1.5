@@ -10,12 +10,18 @@ public class Item implements Parcelable{
     private final String name;
     private final String desc;
 
+    private boolean favorite;
+
+    //TODO: add
+    //private CryptoCurrency cryptoCurrency;
+
     // We can add more if needed
 
     public Item(int imageId, String name, String desc) {
         this.imageId = imageId;
         this.name = name;
         this.desc = desc;
+        favorite = false;
     }
 
     protected Item(Parcel in) {
@@ -42,10 +48,20 @@ public class Item implements Parcelable{
 
     public String getName() {
         return name;
+        //TODO:
+        //return cryptoCurrency.getFullName() + " " +cryptoCurrency.getSymbol();
     }
 
     public String getDesc() {
         return desc;
+    }
+
+    public boolean isFavorite(){
+        return favorite;
+    }
+
+    public void setFavorite(boolean f){
+        favorite = f;
     }
 
     @Override

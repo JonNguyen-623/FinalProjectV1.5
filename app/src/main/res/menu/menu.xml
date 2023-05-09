@@ -5,6 +5,10 @@
         android:id="@+id/sort"
         android:title="@string/sort_by"/>
     <item
+        android:id="@+id/favorites"
+        android:title="Favorites"
+        />
+    <item
         android:id="@+id/unin"
         android:title="@string/uninstall"/>
 </menu>

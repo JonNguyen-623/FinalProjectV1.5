@@ -25,4 +25,16 @@
             app:argType="string"
             android:defaultValue='"default"' />
     </fragment>
+    <fragment
+        android:id="@+id/myItems"
+        android:name="edu.sjsu.android.finalprojectv1.MyItems"
+        android:label="fragment_my_items_list"
+        tools:layout="@layout/fragment_my_items_list" >
+        <action
+            android:id="@+id/action_myItems_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <action
+        android:id="@+id/action_global_myItems"
+        app:destination="@id/myItems" />
 </navigation>

@@ -14,18 +14,11 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        //TODO: let users add a new item to list
-        //either a popup or new screen for the data they want to add
-        findViewById(R.id.adding).setOnClickListener(v->{
-            Toast.makeText(this, "Not Implemented Yet",
-                    Toast.LENGTH_LONG).show();
-        });
-
     }
 
 
@@ -42,16 +35,17 @@ public class MainActivity extends AppCompatActivity {
         //TODO: menu option (sorting) -- maybe have a list to choose from?
         if(id == R.id.sort){
 
-            //old stuff from project3
-            //NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().
-            //        findFragmentById(R.id.fragment); //this one refers to activity_main.xml
-
-            //assert navHostFragment != null;
-            //NavController controller = navHostFragment.getNavController();
-            //controller.navigate(R.id.action_global_fragment_info);
-
             Toast.makeText(this, "Not Implemented Yet",
                     Toast.LENGTH_LONG).show();
+        }
+
+        if(id == R.id.favorites){
+            NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().
+                    findFragmentById(R.id.fragment); //this one refers to activity_main.xml
+
+            assert navHostFragment != null;
+            NavController controller = navHostFragment.getNavController();
+            controller.navigate(R.id.action_global_myItems);
         }
 
 
