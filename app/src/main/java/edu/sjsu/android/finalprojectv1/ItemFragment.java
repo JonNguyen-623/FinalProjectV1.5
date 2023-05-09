@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,18 +54,36 @@ public class ItemFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        data = new ArrayList<>(); //initialize ArrayList <Item>
-        favorites = new ArrayList<>();
 
-        //TODO: add the data here - from API
 
-        //bogus data
-        data.add(new Item(R.drawable.smt, getString(R.string.placeholder), "option1"));
-        data.add(new Item(R.drawable.smt2, getString(R.string.placeholder2), "option2"));
-        data.add(new Item(R.drawable.niyari, getString(R.string.placeholder3), "smirking"));
-        data.add(new Item(R.drawable.smt, getString(R.string.placeholder), "option4"));
-        //getData(); - for use with API
+        if (getArguments() != null) {
+            //detail retrieves Item, data list, favorite list here
+
+            data = getArguments().getParcelableArrayList(getString(R.string.arraylist_key));
+            favorites = getArguments().getParcelableArrayList(getString(R.string.favorites_key));
+        }
+        else{
+            //initialize full data list and favorite list
+            data = new ArrayList<>();
+            favorites = new ArrayList<>();
+
+            //TODO: add the data here - from API
+
+            //bogus data
+            data.add(new Item(R.drawable.fav, "Favorites", "placeholder"));
+            data.add(new Item(R.drawable.smt, getString(R.string.placeholder), "SMT: .77"));
+            data.add(new Item(R.drawable.smt2, getString(R.string.placeholder2), "PTS: 2.00"));
+            data.add(new Item(R.drawable.niyari, getString(R.string.placeholder3), "SRK: 0.80"));
+            data.add(new Item(R.drawable.smt, "Megaten", "MT: 0.88"));
+
+            //getData(); - for use with API
+
+            //TODO: find a way to get to the favorites fragment without going through menu
+        }
+
+
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -90,7 +109,20 @@ public class ItemFragment extends Fragment {
     }
 
     public void onClick(int position) {
-        goDetail(position);
+
+
+        if(position == 0){
+            //go to the menu
+            Bundle bundle = new Bundle();
+            //send full list, favorites list
+            bundle.putParcelableArrayList(getString(R.string.arraylist_key), data);
+            bundle.putParcelableArrayList(getString(R.string.favorites_key), favorites);
+            NavController controller = NavHostFragment.findNavController(this);
+            controller.navigate(R.id.action_itemFragment_to_myItems, bundle);
+
+        }
+
+        else goDetail(position);
     }
 
 
@@ -104,6 +136,7 @@ public class ItemFragment extends Fragment {
         bundle.putParcelableArrayList(getString(R.string.arraylist_key), data);
         bundle.putParcelableArrayList(getString(R.string.favorites_key), favorites);
 
+        //then go to detail
         NavController controller = NavHostFragment.findNavController(this);
         controller.navigate(R.id.action_itemFragment_to_detailFragment, bundle);
 

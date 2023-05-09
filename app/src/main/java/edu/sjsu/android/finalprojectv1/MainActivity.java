@@ -32,12 +32,15 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
+        /*
         //TODO: menu option (sorting) -- maybe have a list to choose from?
         if(id == R.id.sort){
 
             Toast.makeText(this, "Not Implemented Yet",
                     Toast.LENGTH_LONG).show();
         }
+
+         */
 
         if(id == R.id.favorites){
             NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().

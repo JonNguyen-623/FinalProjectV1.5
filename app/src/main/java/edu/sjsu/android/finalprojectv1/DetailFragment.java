@@ -40,6 +40,7 @@ public class DetailFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
+            //detail retrieves Item, data list, favorite list here
             title = getArguments().getString("title");
             selected = getArguments().getParcelable(getString(R.string.argument_key));
             data = getArguments().getParcelableArrayList(getString(R.string.arraylist_key));
@@ -77,7 +78,7 @@ public class DetailFragment extends Fragment {
 
     public void addItem(){
         //Do not need to navigate
-        if(selected != null){
+        if(selected != null && data != null && myList != null){
 
             if(!myList.contains(selected)){
                 myList.add(selected);
@@ -92,7 +93,7 @@ public class DetailFragment extends Fragment {
 
                 //can edit this out, or go somewhere else
                 NavController c = NavHostFragment.findNavController(this);
-                c.navigate(R.id.action_global_myItems, bundle);
+                c.navigate(R.id.action_detailFragment_to_itemFragment, bundle);
             }
             else{
                 Toast.makeText(getContext(), "Already in favorites!",

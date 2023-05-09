@@ -46,12 +46,13 @@ public class MyItems extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        data = new ArrayList<>();
-        favorites = new ArrayList<>();
+        //data = new ArrayList<>();
+        //favorites = new ArrayList<>();
 
         if(getArguments() != null){
-            data = getArguments().getParcelableArrayList(getString(R.string.arraylist_key));
-            favorites = getArguments().getParcelableArrayList(getString(R.string.favorites_key));
+            data = getArguments().getParcelableArrayList(getString(R.string.favorites_key));
+            //data = getArguments().getParcelableArrayList(getString(R.string.arraylist_key));
+            //favorites = getArguments().getParcelableArrayList(getString(R.string.favorites_key));
 
             /*
             for(int i = 0; i < data.size(); i++){
@@ -59,8 +60,12 @@ public class MyItems extends Fragment {
                     favorites.add(data.get(i));
                 }
             }
-
              */
+
+        }
+        else{
+            data = new ArrayList<>();
+            favorites = new ArrayList<>();
         }
 
     }
@@ -79,21 +84,6 @@ public class MyItems extends Fragment {
             recyclerView.setAdapter(adapter);
 
             getActivity().setTitle("Favorites");
-
-            //need to save instance
-
-            //TODO: get item from the main list and add it here
-            if(getArguments() != null){
-                Item i = getArguments().getParcelable(getString(R.string.argument_key));
-
-                //if the data isn't already in the list, add it
-                if(!data.contains(i)){
-                    data.add(i);
-                }
-
-            }
-
-            //data.add(new Item(R.drawable.smt, "sample", "desc"));
 
             //this not working?
             swipeToDelete();
